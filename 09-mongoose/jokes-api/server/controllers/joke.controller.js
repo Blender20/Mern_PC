@@ -26,6 +26,18 @@ module.exports.findAllJokes = (req, res)=>{
             res.json({msg:"Something went wrong", error: err})
         })
 }
+// find a Random Joke
+module.exports.findRandomJoke = (req, res)=>{
+    Joke.find()
+    .then(allJokes=>{
+        // get a random index number from index 0 up to but not including the allQuotes.length
+        let randomIdx = Math.floor(Math.random()*allJokes.length)
+        res.json({results: allJokes[randomIdx]})
+    })
+    .catch(err=>{
+        res.json({msg:"Something went wrong", error: err})
+    })
+}
 
 // Create a Joke
 module.exports.createJoke = (req, res)=>{
